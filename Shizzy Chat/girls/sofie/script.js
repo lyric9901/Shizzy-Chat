@@ -68,27 +68,53 @@ function scrollToBottom() {
     messages.scrollTop = messages.scrollHeight;
 }
 
-function makeMessageEl(text, cls = "ai") {
+function makeMessageEl(text, cls = "ai", time = new Date()) {
     const el = document.createElement("div");
     el.className = `message ${cls}`;
-    el.textContent = text;
+
+    const content = document.createElement("div");
+    content.className = "msg-text";
+    content.textContent = text;
+
+    const stamp = document.createElement("div");
+    stamp.className = "timestamp";
+
+    let hrs = time.getHours();
+    let mins = time.getMinutes().toString().padStart(2, "0");
+    let ampm = hrs >= 12 ? "PM" : "AM";
+
+    hrs = hrs % 12;
+    hrs = hrs ? hrs : 12;
+
+    stamp.textContent = `${hrs}:${mins} ${ampm}`;
+
+    el.appendChild(content);
+    el.appendChild(stamp);
+
     return el;
 }
 
+
 function createTypingElement() {
-    const typingEl = document.createElement("div");
-    typingEl.className = "message ai typing";
+    const el = document.createElement("div");
+    el.className = "message ai typing";
+
+    const content = document.createElement("div");
+    content.className = "msg-text typing-dots";
 
     const dot1 = document.createElement("span"); dot1.className = "dot";
     const dot2 = document.createElement("span"); dot2.className = "dot";
     const dot3 = document.createElement("span"); dot3.className = "dot";
 
-    typingEl.appendChild(dot1);
-    typingEl.appendChild(dot2);
-    typingEl.appendChild(dot3);
+    content.appendChild(dot1);
+    content.appendChild(dot2);
+    content.appendChild(dot3);
 
-    return typingEl;
+    el.appendChild(content);
+
+    return el;
 }
+
 
 let typingIndicator = null;
 
@@ -285,7 +311,7 @@ async function callModel(systemPrompt, userMessage) {
     const text = userInputEl.value.trim();
     if (!text) return;
 
-    const userEl = makeMessageEl(text, "user");
+   const userEl = makeMessageEl(text, "user", new Date());
     messages.appendChild(userEl);
     scrollToBottom();
     saveChatHistory();
@@ -305,7 +331,7 @@ async function callModel(systemPrompt, userMessage) {
 
         hideTyping();
 
-        const aiEl = makeMessageEl(reply, "ai");
+       const aiEl = makeMessageEl(reply, "ai", new Date());
         messages.appendChild(aiEl);
         scrollToBottom();
         saveChatHistory();

@@ -18,7 +18,7 @@ const sendButton = chatForm.querySelector('button[type="submit"]');
    CHAT HISTORY SAVE / LOAD
    ============================================================ */
 function saveChatHistory() {
-    localStorage.setItem("sofie_chat_history_v2", messages.innerHTML);
+    localStorage.setItem("billie_chat_history_v2", messages.innerHTML);
 }
 
 function loadChatHistory() {
@@ -38,7 +38,7 @@ function loadState() {
         return {
             age: 22,
             mood: "horny",
-            trust: 2,
+            trust: 0,
             insultCount: 0,
             greetingCount: 0,
             lastMessages: [],

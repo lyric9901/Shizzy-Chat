@@ -2,52 +2,87 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Select Your AI Girl</title>
+
+<title>Shizzy AI | Choose Your Virtual AI Companion</title>
+<meta name="description" content="Shizzy AI lets you choose interactive AI girls with unique personalities. Chat, connect, and experience realistic virtual companionship.">
+<meta name="keywords" content="AI girlfriend, virtual companion, Shizzy AI, AI chat, AI girls, AI personalities">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:title" content="Shizzy AI | Choose Your AI Companion">
+<meta property="og:description" content="Pick from unique AI personalities and start chatting instantly.">
+<meta property="og:image" content="https://colorful-blue-osvzr5r5u0.edgeone.app/Screenshot%202025-11-16%20141102.png">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- Hamburger / Profile Menu -->
-<div class="hamburger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+<header>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
 
-<div class="side-menu" id="sideMenu">
+<nav class="side-menu" id="sideMenu">
   <h2>Your Profile</h2>
+
   <ul>
     <li onclick="location.href='profile.html'">Profile</li>
-    <li class="submenu">Settings ▼</li>
+    <li class="submenu" onclick="toggleSettings()">Settings ▼</li>
 
-    <ul class="settings-list">
+    <ul class="settings-list" id="settingsList">
       <li onclick="deleteChats()">Delete Chats</li>
     </ul>
   </ul>
-</div>
+</nav>
 
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-<div class="container">
-  <h1 class="title">Choose Your Girl</h1>
+<main>
+<section class="hero">
+  <h1 class="title fade-up">Choose Your Girl</h1>
 
-  <div class="girl-card" onclick="location.href='/girls/sofie/sofie.html'">
-    <img src="https://colorful-blue-osvzr5r5u0.edgeone.app/Screenshot%202025-11-16%20141102.png" class="girl-img">
-    <h2>Sofie</h2>
-    <p>Soft, emotional, warms up fast, girlfriend vibes.</p>
-  </div>
+  <div class="cards">
 
-  <div class="girl-card locked">
-    <img src="comingsoon.png" class="girl-img">
-    <h2>Coming Soon</h2>
-    <p>Another personality will pop up later.</p>
+    <article class="girl-card fade-up" onclick="location.href='/girls/sofie/sofie.html'">
+      <div class="img-wrap">
+        <img src="/girls/sofie/media/sofie.png"
+             class="girl-img"
+             alt="AI girl Sofie">
+      </div>
+      <h2>Sofie</h2>
+      <p>Soft, emotional, warms up fast, girlfriend vibes.</p>
+    </article>
+
+        <article class="girl-card fade-up" onclick="location.href='/girls/Billie/billie.html'">
+      <div class="img-wrap">
+        <img src="/girls/Billie/billie.html"
+             class="girl-img"
+             alt="AI girl Sofie">
+      </div>
+      <h2>Sofie</h2>
+      <p>Soft, emotional, warms up fast, girlfriend vibes.</p>
+    </article>
+
+
   </div>
-</div>
+</section>
+</main>
 
 <script>
 function toggleMenu() {
   document.getElementById("sideMenu").classList.toggle("open");
   document.getElementById("overlay").classList.toggle("show");
+}
+
+function toggleSettings() {
+  document.getElementById("settingsList").classList.toggle("open");
 }
 
 function deleteChats() {
@@ -58,5 +93,3 @@ function deleteChats() {
 
 </body>
 </html>
-
-

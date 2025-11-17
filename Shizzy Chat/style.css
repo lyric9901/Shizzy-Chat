@@ -1,73 +1,28 @@
-/* GLOBAL DARK THEME */
+/* GLOBAL */
 body {
   margin: 0;
-  padding: 0;
-  background: #0b0b0b;
-  color: #f2f2f2;
-  font-family: 'Poppins', Arial, sans-serif;
+  background: #050505;
+  color: #fdfdfd;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
-/* Smooth fade for whole page */
 * {
-  transition: 0.25s ease;
+  box-sizing: border-box;
+  transition: 0.3s ease;
 }
 
-/* CONTAINER */
-.container {
-  max-width: 650px;
-  margin: 100px auto 40px;
-  text-align: center;
-  padding: 0 20px;
-  animation: fadeUp 0.8s ease-out;
+/* HEADER */
+header {
+  position: relative;
+  width: 100%;
 }
 
-/* Title */
-.title {
-  font-size: 40px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 40px;
-  color: #fff;
-}
-
-/* GIRL CARDS */
-.girl-card {
-  background: linear-gradient(145deg, #141414, #0c0c0c);
-  padding: 25px;
-  border-radius: 20px;
-  margin-bottom: 35px;
-  cursor: pointer;
-  box-shadow: 0px 0px 0px rgba(255,255,255,0);
-  transform: translateY(0);
-}
-
-.girl-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 10px 35px rgba(255,255,255,0.07);
-}
-
-/* Locked card */
-.girl-card.locked {
-  opacity: 0.35;
-  cursor: not-allowed;
-  filter: grayscale(70%);
-}
-
-/* Girl Image */
-.girl-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 4px solid #1f1f1f;
-  object-fit: cover;
-  margin-bottom: 12px;
-}
-
-/* Hamburger Menu */
+/* HAMBURGER */
 .hamburger {
   position: fixed;
-  top: 25px;
   right: 25px;
+  top: 25px;
   width: 35px;
   cursor: pointer;
   z-index: 999;
@@ -76,23 +31,23 @@ body {
 .hamburger span {
   display: block;
   height: 4px;
-  background: #fff;
   margin: 6px 0;
-  border-radius: 5px;
+  background: #fff;
+  border-radius: 6px;
 }
 
-/* Side Menu */
+/* SIDE MENU */
 .side-menu {
   position: fixed;
   top: 0;
-  right: -270px;
-  width: 270px;
+  right: -300px;
+  width: 260px;
   height: 100%;
   background: #111;
   padding: 35px;
-  box-shadow: -5px 0 30px rgba(0,0,0,0.7);
-  transition: 0.3s ease-in-out;
+  transition: 0.35s ease;
   z-index: 998;
+  box-shadow: -5px 0 30px rgba(0,0,0,0.7);
 }
 
 .side-menu.open {
@@ -100,61 +55,138 @@ body {
 }
 
 .side-menu h2 {
-  font-size: 25px;
-  margin-bottom: 25px;
-  color: #fff;
+  margin-top: 0;
 }
 
-/* Menu List */
+/* LISTS */
 .side-menu ul {
   list-style: none;
   padding: 0;
 }
 
 .side-menu li {
-  font-size: 18px;
   padding: 12px 0;
-  color: #dcdcdc;
   cursor: pointer;
+  font-size: 18px;
+  color: #ccc;
 }
 
 .side-menu li:hover {
   color: #fff;
 }
 
+/* SETTINGS DROPDOWN */
 .settings-list {
-  margin-left: 15px;
   display: none;
+  margin-left: 15px;
 }
 
-.submenu:hover + .settings-list {
+.settings-list.open {
   display: block;
 }
 
-/* Overlay */
+/* OVERLAY */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.5);
   display: none;
-  backdrop-filter: blur(3px);
+  z-index: 997;
 }
 
 .overlay.show {
   display: block;
 }
 
-/* Animations */
+/* HERO SECTION */
+.hero {
+  text-align: center;
+  padding: 70px 20px 40px;
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+/* TWO SQUARES SIDE BY SIDE */
+.cards {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 650px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+/* CARD STYLING */
+.girl-card {
+  background: linear-gradient(135deg, #181818, #0d0d0d);
+  padding: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 0 0 rgba(255,255,255,0);
+  aspect-ratio: 1/1;  /* PERFECT SQUARE */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.girl-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0px 10px 35px rgba(255,255,255,0.06);
+}
+
+/* LOCKED */
+.girl-card.locked {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+/* IMAGE */
+.img-wrap {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #222;
+}
+
+.girl-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ANIMATIONS */
+.fade-up {
+  animation: fadeUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* MOBILE FIX */
+@media (max-width: 500px) {
+  .title {
+    font-size: 30px;
   }
 }

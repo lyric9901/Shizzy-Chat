@@ -404,12 +404,48 @@ chatForm.addEventListener("submit", (e) => {
 });
 
 /* ============================================================
+   POST-PROCESS MODEL REPLIES (small in-client flavoring)
+   - Shorten if too long, insert subtle emoji, sometimes add "pet".
+   ============================================================ */
+function postProcessReply(reply) {
+    if (!reply) return reply;
+    let out = reply.trim();
+
+    // ensure relatively short replies: prefer sentences over walls
+    if (out.length > 220) {
+        // try to truncate to first sentence or first 200 chars
+        const firstSentence = out.split(/[\.\!\?]\s/)[0];
+        out = firstSentence.length > 40 ? firstSentence : out.slice(0, 200);
+        if (!/[\.\!\?]$/.test(out)) out = out.replace(/,?\s?[^\s]*$/, '...');
+    }
+
+    // ensure quiet emoji usage — add one if none present and mood is soft/amused
+    const hasEmoji = /[\u{1F300}-\u{1F6FF}]/u.test(out);
+    if (!hasEmoji && (girlState.mood === 'soft' || girlState.mood === 'amused')) {
+        out += ' 🖤';
+    }
+
+    // sometimes (small chance) add "pet" when mood high and trust high
+    if (Math.random() < 0.12 && girlState.trust > 5 && (girlState.mood === 'soft' || girlState.mood === 'amused')) {
+        // insert politely at the start or end
+        if (Math.random() < 0.5) out = `pet. ${out}`;
+        else out = `${out} pet.`;
+    }
+
+    // make sure tone is compact and confident: no excessive filler
+    out = out.replace(/\b(um|uh|like|you know)\b/gi, '');
+    out = out.replace(/\s{2,}/g, ' ');
+
+    return out.trim();
+}
+
+/* ============================================================
    INIT
    ============================================================ */
 (function init() {
     loadChatHistory();
 
-    // If first time OR chat is empty, let Sofie text first
+    // If first time OR chat is empty, let Billie text first
     if (!messages.innerHTML.trim()) {
         setTimeout(() => {
             const firstMsg = makeMessageEl("hiiiiiiii…😃","ai")

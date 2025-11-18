@@ -8,12 +8,6 @@
 </head>
 <body>
 
-  <!-- 3 dots menu -->
-  <div class="menu-dots" onclick="toggleMenu()">⋮</div>
-  <div class="menu-box" id="menuBox">
-    <div onclick="deleteAllData()">Delete Chat</div>
-    <div onclick="location.reload()">Reload</div>
-  </div>
 
   <div class="container">
 
@@ -67,10 +61,7 @@
   <script src="script.js"></script>
 
 <script>
-function toggleMenu() {
-  const box = document.getElementById("menuBox");
-  box.style.display = box.style.display === "block" ? "none" : "block";
-}
+
 
 function deleteAllData() {
   localStorage.removeItem("billie_chat_history_v2");

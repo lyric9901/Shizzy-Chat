@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sofie Chat</title>
+  <title>Makima Chat</title>
   <link rel="stylesheet" href="/girls/sofie.css" />
 </head>
 <body>
@@ -14,11 +14,11 @@
     <!-- TOP BAR -->
     <header class="top-bar">
       <div class="left">
-        <img class="pfp" src="/girls/sofie/media/sofie.png" >
+        <img class="pfp" src="/girls/makima/media/makima.png" >
 
         <div class="meta">
           <div class="name-row">
-            <h1 class="title">Sofie</h1>
+            <h1 class="title">Makima</h1>
             <span class="verified">✔</span>
           </div>
 
@@ -54,14 +54,14 @@
     <span class="close-photo" onclick="togglePhotos()">✕</span>
 
     <div class="photo-container">
-      <img class="photo-img" id="photoMain" src="/girls/sofie/media/sofie.png">
+      <img class="photo-img" id="photoMain" src="#">
     </div>
 
     <div class="photo-thumbs">
+        <img src="/girls/sofie/media/sofie4.png" onclick="changePhoto(this.src)">
       <img src="/girls/sofie/media/sofie.png" onclick="changePhoto(this.src)">
       <img src="/girls/sofie/media/sofie2.png" onclick="changePhoto(this.src)">
       <img src="/girls/sofie/media/sofie3.png" onclick="changePhoto(this.src)">
-      <img src="/girls/sofie/media/sofie4.png" onclick="changePhoto(this.src)">
     </div>
   </div>
 </div>
@@ -84,8 +84,8 @@
 
 
 function deleteAllData() {
-  localStorage.removeItem("sofie_chat_history_v2");
-  localStorage.removeItem("sofie_state_v2");
+  localStorage.removeItem("makima_chat_history_v2");
+  localStorage.removeItem("makima_state_v2");
   document.getElementById("messages").innerHTML = "";
   alert("Chat deleted.");
   location.reload();

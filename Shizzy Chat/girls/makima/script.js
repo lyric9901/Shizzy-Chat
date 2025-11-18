@@ -9,7 +9,7 @@
    ============================================================ */
 
 /* ---------- CONFIG ---------- */
-const OPENROUTER_API_KEY = ""; // <-- replace this
+const OPENROUTER_API_KEY = "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"; // <-- replace this
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL_NAME = "deepseek/deepseek-chat";
 
@@ -437,4 +437,5 @@ chatForm.addEventListener("submit", (e) => {
 
 /* ============================================================
     END OF FILE
+
    ============================================================ */
